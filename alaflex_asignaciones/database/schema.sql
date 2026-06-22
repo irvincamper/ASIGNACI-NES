@@ -1,0 +1,2 @@
+-- Etapa 1 intentionally does not create SQLite tables.
+-- The real schema will be added in Etapa 2.
