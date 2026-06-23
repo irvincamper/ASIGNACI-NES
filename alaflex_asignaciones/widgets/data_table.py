@@ -3,9 +3,12 @@ from __future__ import annotations
 from collections.abc import Callable, Sequence
 
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QColor
 from PySide6.QtWidgets import (
     QAbstractItemView,
+    QFrame,
     QHBoxLayout,
+    QHeaderView,
     QLabel,
     QTableWidget,
     QTableWidgetItem,
@@ -13,7 +16,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from app.theme import COLOR_BLUE, COLOR_TEXT, COLOR_TEXT_MUTED, TABLE_ROW_HEIGHT
+from app.theme import COLOR_BLUE, COLOR_BORDER, COLOR_CARD, COLOR_TEXT, COLOR_TEXT_MUTED, TABLE_ROW_HEIGHT
 from utils.formatters import icon_from_name
 from widgets.status_badge import StatusBadge
 
@@ -24,6 +27,7 @@ class DataTable(QTableWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setShowGrid(False)
+        self.setFrameShape(QFrame.NoFrame)
         self.setAlternatingRowColors(False)
         self.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -31,6 +35,38 @@ class DataTable(QTableWidget):
         self.verticalHeader().setVisible(False)
         self.horizontalHeader().setStretchLastSection(True)
         self.setFocusPolicy(Qt.NoFocus)
+        self.setStyleSheet(
+            f"""
+            QTableWidget {{
+                background: {COLOR_CARD};
+                border: none;
+                gridline-color: transparent;
+                selection-background-color: #EAF1FF;
+                selection-color: {COLOR_BLUE};
+                font-size: 14px;
+            }}
+            QTableWidget::item {{
+                border-bottom: 1px solid #EEF2F7;
+                padding-left: 12px;
+                padding-right: 12px;
+            }}
+            QTableWidget::item:selected {{
+                background: #EAF1FF;
+                color: {COLOR_BLUE};
+            }}
+            QHeaderView::section {{
+                background: {COLOR_CARD};
+                color: {COLOR_TEXT};
+                border: none;
+                border-bottom: 1px solid {COLOR_BORDER};
+                padding-left: 12px;
+                padding-right: 12px;
+                min-height: 44px;
+                font-size: 14px;
+                font-weight: 800;
+            }}
+            """
+        )
 
     def set_data(
         self,
@@ -54,6 +90,7 @@ class DataTable(QTableWidget):
         self.setColumnCount(len(columns))
         self.setRowCount(len(rows))
         self.setHorizontalHeaderLabels([label for _, label in columns])
+        self.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
         for row_index, row in enumerate(rows):
             self.setRowHeight(row_index, TABLE_ROW_HEIGHT)
@@ -77,7 +114,10 @@ class DataTable(QTableWidget):
                     continue
 
                 item = QTableWidgetItem(str(value))
-                item.setForeground(COLOR_TEXT if row_index != 0 else COLOR_BLUE)
+                tooltip = row.get(f"{key}_tooltip")
+                if tooltip:
+                    item.setToolTip(str(tooltip))
+                item.setForeground(QColor(COLOR_TEXT if row_index != 0 else COLOR_BLUE))
                 alignment = Qt.AlignVCenter
                 if key in center_columns:
                     alignment |= Qt.AlignCenter
@@ -86,7 +126,6 @@ class DataTable(QTableWidget):
                 item.setTextAlignment(alignment)
                 self.setItem(row_index, column_index, item)
 
-        self.resizeColumnsToContents()
         if rows:
             self.selectRow(0)
 

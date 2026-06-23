@@ -10,7 +10,16 @@ from utils.formatters import icon_from_name
 
 
 class ConfirmDialog(QDialog):
-    def __init__(self, title: str, message: str, parent=None) -> None:
+    def __init__(
+        self,
+        title: str,
+        message: str,
+        parent=None,
+        *,
+        confirm: bool = False,
+        accept_text: str = "Entendido",
+        cancel_text: str = "Cancelar",
+    ) -> None:
         super().__init__(parent)
         self.setWindowTitle(title)
         self.setModal(True)
@@ -38,14 +47,24 @@ class ConfirmDialog(QDialog):
         message_label.setWordWrap(True)
         message_label.setStyleSheet(f"color: {COLOR_TEXT_MUTED}; font-size: 14px; line-height: 150%;")
 
-        button = QPushButton("Entendido")
+        buttons = QHBoxLayout()
+        buttons.setSpacing(12)
+        if confirm:
+            cancel = QPushButton(cancel_text)
+            cancel.setCursor(Qt.PointingHandCursor)
+            cancel.setStyleSheet(button_stylesheet("outline"))
+            cancel.clicked.connect(self.reject)
+            buttons.addWidget(cancel)
+
+        button = QPushButton(accept_text)
         button.setCursor(Qt.PointingHandCursor)
         button.setStyleSheet(button_stylesheet("primary"))
         button.clicked.connect(self.accept)
+        buttons.addWidget(button)
 
         layout.addLayout(header)
         layout.addWidget(message_label)
-        layout.addWidget(button)
+        layout.addLayout(buttons)
 
         self.setStyleSheet(
             self.styleSheet()
@@ -61,6 +80,16 @@ class ConfirmDialog(QDialog):
         apply_shadow(self)
 
     @staticmethod
-    def show_mock(parent=None, title: str = "Etapa 2") -> None:
+    def show_mock(parent=None, title: str = "Función pendiente") -> None:
         dialog = ConfirmDialog(title, MOCK_ACTION_MESSAGE, parent)
         dialog.exec()
+
+    @staticmethod
+    def show_message(parent, title: str, message: str) -> None:
+        dialog = ConfirmDialog(title, message, parent)
+        dialog.exec()
+
+    @staticmethod
+    def ask(parent, title: str, message: str, accept_text: str = "Continuar") -> bool:
+        dialog = ConfirmDialog(title, message, parent, confirm=True, accept_text=accept_text)
+        return dialog.exec() == QDialog.Accepted

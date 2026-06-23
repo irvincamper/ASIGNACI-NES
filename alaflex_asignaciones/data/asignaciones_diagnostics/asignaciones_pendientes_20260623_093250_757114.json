@@ -1,0 +1,1311 @@
+{
+  "fecha_hora": "2026-06-23 09:32:50",
+  "empleados_procesados": 162,
+  "empleados_omitidos": 0,
+  "creadas": 0,
+  "omitidas_por_duplicado": 1634,
+  "empleados_sin_puesto": 0,
+  "puestos_sin_reglas": 0,
+  "objetos_inactivos": 0,
+  "objetos_sin_stock": 0,
+  "errores": [],
+  "detalle_por_empleado": [
+    {
+      "matricula": "10",
+      "nombre": "PASCUAL GUADALUPE TREJO MALDONADO",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "1009",
+      "nombre": "NOEMÍ CLEMENTE ZIZALDRA",
+      "puesto": "CMA - Comprador y Supervisor de Almacén de Materiales Auxiliares",
+      "creadas": 0,
+      "omitidas": 11,
+      "observaciones": []
+    },
+    {
+      "matricula": "1010",
+      "nombre": "ENRIQUE MEJÍA GÓMEZ",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1019",
+      "nombre": "ERIK ALVARADO ROSALES",
+      "puesto": "MOL - Molinero",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1035",
+      "nombre": "JOSÉ EFRAÍN CASTILLO RAMÍREZ",
+      "puesto": "GPR - Gerente de Producción",
+      "creadas": 0,
+      "omitidas": 12,
+      "observaciones": []
+    },
+    {
+      "matricula": "1036",
+      "nombre": "LAURA SOSA CERÓN",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1040",
+      "nombre": "ALAN ISLAS RODRÍGUEZ",
+      "puesto": "DJR - Diseñador Jr",
+      "creadas": 0,
+      "omitidas": 9,
+      "observaciones": []
+    },
+    {
+      "matricula": "1047",
+      "nombre": "IRENE BAÑOS ÁNGELES",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1054",
+      "nombre": "JANET VARGAS SERENO",
+      "puesto": "APE - Auxiliar de Pelletizado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1061",
+      "nombre": "FLOR IBETH CORTEZ PONCIANO",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1064",
+      "nombre": "LUIS FERNANDO AMADOR ORTIZ",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1066",
+      "nombre": "FRANCISCO ALBERTO ZAMBRANO GARRIDO",
+      "puesto": "APE - Auxiliar de Pelletizado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1068",
+      "nombre": "MIGUEL ÁNGEL CASTILLO GUEVARA",
+      "puesto": "APE - Auxiliar de Pelletizado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1081",
+      "nombre": "NELY PAOLA ÁNGELES TOLENTINO",
+      "puesto": "PLI - Personal de Limpieza",
+      "creadas": 0,
+      "omitidas": 10,
+      "observaciones": []
+    },
+    {
+      "matricula": "1090",
+      "nombre": "GRISELDA PÉREZ VARGAS",
+      "puesto": "PRT - Practicante Temporal",
+      "creadas": 0,
+      "omitidas": 3,
+      "observaciones": []
+    },
+    {
+      "matricula": "1094",
+      "nombre": "KEVIN URIEL HERNÁNDEZ RODRÍGUEZ",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1095",
+      "nombre": "RODRIGO RAMÍREZ PACHECO",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1099",
+      "nombre": "DANIEL PACHECO GONZÁLEZ",
+      "puesto": "APE - Auxiliar de Pelletizado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "11",
+      "nombre": "JOSÉ MANUEL ORTIZ GONZÁLEZ",
+      "puesto": "TME - Técnico en Mantenimiento Eléctrico",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1104",
+      "nombre": "EDGAR GEOVANNY ESQUIVEL CALIXTO",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1108",
+      "nombre": "SARAHÍ MIMILA HERRERA",
+      "puesto": "ASS - Analista de Seguridad y Salud",
+      "creadas": 0,
+      "omitidas": 10,
+      "observaciones": []
+    },
+    {
+      "matricula": "1114",
+      "nombre": "ADOLFO VAZQUEZ SOTO",
+      "puesto": "MOL - Molinero",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1118",
+      "nombre": "SAMUEL LÓPEZ SOTO",
+      "puesto": "AMR - Auxiliar de Materia Prima y Reproceso de Materiales",
+      "creadas": 0,
+      "omitidas": 8,
+      "observaciones": []
+    },
+    {
+      "matricula": "1122",
+      "nombre": "HADRIEL RAMOS HERNANDEZ",
+      "puesto": "AAC - Auxiliar de Calidad",
+      "creadas": 0,
+      "omitidas": 8,
+      "observaciones": []
+    },
+    {
+      "matricula": "1123",
+      "nombre": "SHEYNA MICHELLE DELGADILLO OLVERA",
+      "puesto": "ACD - Analista de Capacitación y Desarrollo de Talento",
+      "creadas": 0,
+      "omitidas": 8,
+      "observaciones": []
+    },
+    {
+      "matricula": "1125",
+      "nombre": "ULISES JUÁREZ ALCANTARILLA",
+      "puesto": "AAT - Auxiliar de Almacén de Producto Terminado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1126",
+      "nombre": "DANAE FLORES ÁNGELES",
+      "puesto": "AAD - Auxiliar de Administración",
+      "creadas": 0,
+      "omitidas": 8,
+      "observaciones": []
+    },
+    {
+      "matricula": "1127",
+      "nombre": "MIGUEL ALBERTO REYES LÓPEZ",
+      "puesto": "MOL - Molinero",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1134",
+      "nombre": "AXEL ORTIZ ROMERO",
+      "puesto": "AAM - Auxiliar de Almacén de Materia Prima",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1138",
+      "nombre": "ANTONIO ZAMBRANO ROSALES",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1143",
+      "nombre": "EDGARDO ASSAEL QUIRINO SEVILLA",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1144",
+      "nombre": "ERICK JESÚS ISLAS MANRRÍQUEZ",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1153",
+      "nombre": "URIEL LIRA RIVAS",
+      "puesto": "ACA - Auditor de Calidad - Proceso",
+      "creadas": 0,
+      "omitidas": 18,
+      "observaciones": []
+    },
+    {
+      "matricula": "1155",
+      "nombre": "IRAZEMA MARTÍNEZ BECERRA",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1157",
+      "nombre": "JORGE CLEMENTE ZIZALDRA",
+      "puesto": "AAT - Auxiliar de Almacén de Producto Terminado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1158",
+      "nombre": "MARÍA FERNANDA MARTÍNEZ ARREGUÍN",
+      "puesto": "PRT - Practicante Temporal",
+      "creadas": 0,
+      "omitidas": 3,
+      "observaciones": []
+    },
+    {
+      "matricula": "1159",
+      "nombre": "JOAQUÍN LAZCANO LECHUGA",
+      "puesto": "TMH - Técnico en Mantenimiento de Herramentales",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1162",
+      "nombre": "EDUARDO CABRERA VITE",
+      "puesto": "IPR - Ingeniero de Procesos",
+      "creadas": 0,
+      "omitidas": 9,
+      "observaciones": []
+    },
+    {
+      "matricula": "1163",
+      "nombre": "DAVID CRUZ RODRÍGUEZ",
+      "puesto": "EMP - Empacador",
+      "creadas": 0,
+      "omitidas": 9,
+      "observaciones": []
+    },
+    {
+      "matricula": "1164",
+      "nombre": "ITZEL DIMAS ARREOLA",
+      "puesto": "ARH - Analista de Recursos Humanos",
+      "creadas": 0,
+      "omitidas": 10,
+      "observaciones": []
+    },
+    {
+      "matricula": "1165",
+      "nombre": "BRUNO ANTONIO GARCÍA BOTELLO",
+      "puesto": "TME - Técnico en Mantenimiento Eléctrico",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1166",
+      "nombre": "ÁNGEL YAIR ROSAS GUTIERREZ",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1167",
+      "nombre": "ANDONI YAMIR FLORES ROCHA",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1168",
+      "nombre": "ERIC SOTO JUSTO",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1170",
+      "nombre": "VÍCTOR MANUEL RIVERA CASTELÁN",
+      "puesto": "MOL - Molinero",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1171",
+      "nombre": "LORENA ROSAS PELCASTRE",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1172",
+      "nombre": "CHRIS OLIVER BENAVIDES APARICIO",
+      "puesto": "AAM - Auxiliar de Almacén de Materia Prima",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "1173",
+      "nombre": "IRVIN HERNÁNDEZ CABRERA",
+      "puesto": "PRT - Practicante Temporal",
+      "creadas": 0,
+      "omitidas": 3,
+      "observaciones": []
+    },
+    {
+      "matricula": "1174",
+      "nombre": "AVRIL PAOLA SÁNCHEZ CRUZ",
+      "puesto": "PRT - Practicante Temporal",
+      "creadas": 0,
+      "omitidas": 3,
+      "observaciones": []
+    },
+    {
+      "matricula": "1176",
+      "nombre": "FRANCISCO JESÚS MORALES CORTES",
+      "puesto": "EMP - Empacador",
+      "creadas": 0,
+      "omitidas": 9,
+      "observaciones": []
+    },
+    {
+      "matricula": "14",
+      "nombre": "EFRÉN CONDE ORTIZ",
+      "puesto": "STU - Supervisor de Turno",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "149",
+      "nombre": "IVÁN MENESES REYES",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "152",
+      "nombre": "ELIEL SUÁREZ PEREA",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "165",
+      "nombre": "SAMUEL HERNÁNDEZ DE LA CRUZ",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "173",
+      "nombre": "JOSÉ CARLOS MEJÍA SOTO",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "176",
+      "nombre": "GABRIEL MORALES ORTEGA",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "18",
+      "nombre": "GUSTAVO ROLDÁN HERNÁNDEZ",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "187",
+      "nombre": "HUGO FABIÁN CALDERÓN GUERRERO",
+      "puesto": "OPE - Operador de Pelletizado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "197",
+      "nombre": "MA. CONCEPCIÓN GUADALUPE BORJAS MÁRQUEZ",
+      "puesto": "GAD - Gerente de Administración",
+      "creadas": 0,
+      "omitidas": 12,
+      "observaciones": []
+    },
+    {
+      "matricula": "198",
+      "nombre": "PATRICIA ÁNGELES TOLENTINO",
+      "puesto": "EMP - Empacador",
+      "creadas": 0,
+      "omitidas": 9,
+      "observaciones": []
+    },
+    {
+      "matricula": "199",
+      "nombre": "BENJAMÍN ROSALES ROMERO",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "20",
+      "nombre": "JUVENAL ROSAS CORTÉS",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "202",
+      "nombre": "RAYMUNDO RAMÓN AVILÉS BARRAZA",
+      "puesto": "OPE - Operador de Pelletizado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "21",
+      "nombre": "SALVADOR BRIONES HERNÁNDEZ",
+      "puesto": "TGA - Técnico en Mantenimiento General A",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "211",
+      "nombre": "FELIPE QUIROZ LIRA",
+      "puesto": "OPE - Operador de Pelletizado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "23",
+      "nombre": "HÉCTOR MARTÍN TREJO MALDONADO",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "233",
+      "nombre": "GERMÁN ALVARADO PÉREZ",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "237",
+      "nombre": "SALVADOR ROSAS RAMOS",
+      "puesto": "TMM - Técnico en Mantenimiento Mecánico",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "24",
+      "nombre": "ERICK MORÁN PÉREZ",
+      "puesto": "TMM - Técnico en Mantenimiento Mecánico",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "251",
+      "nombre": "LUIS ENRIQUE GARCÍA BORGES",
+      "puesto": "ACA - Auditor de Calidad - Proceso",
+      "creadas": 0,
+      "omitidas": 18,
+      "observaciones": []
+    },
+    {
+      "matricula": "263",
+      "nombre": "ABRAHAM ROSALES DIONICIO",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "266",
+      "nombre": "ZABDI GARCÍA LAGUNA",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "27",
+      "nombre": "ARCADIO MENDOZA CARBAJAL",
+      "puesto": "STU - Supervisor de Turno",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "278",
+      "nombre": "LUIS ALBERTO MEDINA SAAVEDRA",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "28",
+      "nombre": "JOSÉ DELFINO MUÑOZ CEREZO",
+      "puesto": "REN - Responsable de Enrollado",
+      "creadas": 0,
+      "omitidas": 19,
+      "observaciones": []
+    },
+    {
+      "matricula": "281",
+      "nombre": "JUAN CARLOS ARANDA DE JESÚS",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "293",
+      "nombre": "JUAN CARLOS VARGAS CAZARES",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "295",
+      "nombre": "JOSÉ CARLOS CRUZ PARRA",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "299",
+      "nombre": "ASAEL SURIST HERNÁNDEZ ROMERO",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "30",
+      "nombre": "GREGORIO MENDOZA CARBAJAL",
+      "puesto": "TMM - Técnico en Mantenimiento Mecánico",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "31",
+      "nombre": "CIPRIANO GUTIÉRREZ DÍAZ",
+      "puesto": "TMH - Técnico en Mantenimiento de Herramentales",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "310",
+      "nombre": "LUIS ENRIQUE MARTÍNEZ FRANCO",
+      "puesto": "ACA - Auditor de Calidad - Proceso",
+      "creadas": 0,
+      "omitidas": 18,
+      "observaciones": []
+    },
+    {
+      "matricula": "318",
+      "nombre": "OLIVER ARTURO MÉRIDA JIMÉNEZ",
+      "puesto": "AAM - Auxiliar de Almacén de Materia Prima",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "322",
+      "nombre": "GUILLERMO VEGA ARELLANO",
+      "puesto": "OPE - Operador de Pelletizado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "333",
+      "nombre": "MARÍA SOLEDAD ITZEL ISLAS PEREA",
+      "puesto": "GCD - Gerente de Calidad, Diseño y Desarrollo",
+      "creadas": 0,
+      "omitidas": 12,
+      "observaciones": []
+    },
+    {
+      "matricula": "351",
+      "nombre": "JOEL ABRAHAM SUÁREZ LIMONES",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "353",
+      "nombre": "YURIBIA RAMÍREZ SAMPERIO",
+      "puesto": "GRH - Gerente de Recursos Humanos",
+      "creadas": 0,
+      "omitidas": 12,
+      "observaciones": []
+    },
+    {
+      "matricula": "362",
+      "nombre": "EDUARDO ALBERTO REZA PEDRAZA",
+      "puesto": "AXE - Auxiliar de Extrusión",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "37",
+      "nombre": "JAVIER PEDRO CORTEZ BORJES",
+      "puesto": "AMP - Almacenista de Materia Prima",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "371",
+      "nombre": "JULIO CÉSAR HERNÁNDEZ MÁRQUEZ",
+      "puesto": "AXE - Auxiliar de Extrusión",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "373",
+      "nombre": "SANDRA JARDINEZ LUQUEÑO",
+      "puesto": "PLI - Personal de Limpieza",
+      "creadas": 0,
+      "omitidas": 10,
+      "observaciones": []
+    },
+    {
+      "matricula": "376",
+      "nombre": "JOSÉ LUIS PÉREZ RAMÍREZ",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "385",
+      "nombre": "ALEJANDRO ATENCO FRANCO",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "389",
+      "nombre": "LUIS ENRIQUE CASTELÁN JIMÉNEZ",
+      "puesto": "TGA - Técnico en Mantenimiento General A",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "397",
+      "nombre": "JONATHAN URIEL MORALES MARTÍNEZ",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "40",
+      "nombre": "ANDRÉS GARCÍA DÍAZ",
+      "puesto": "DPL - Director de Planta",
+      "creadas": 0,
+      "omitidas": 12,
+      "observaciones": []
+    },
+    {
+      "matricula": "428",
+      "nombre": "LORENZO ANTONIO RAMÍREZ QUINTANA",
+      "puesto": "AXE - Auxiliar de Extrusión",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "43",
+      "nombre": "JULIO CÉSAR SANTILLÁN BADILLO",
+      "puesto": "GPL - Gerente de Planeación de la Producción y Entregas",
+      "creadas": 0,
+      "omitidas": 12,
+      "observaciones": []
+    },
+    {
+      "matricula": "435",
+      "nombre": "CARLOS MANUEL FRAGOSO ROJAS",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "468",
+      "nombre": "MOISÉS VERGARA MÁRQUEZ",
+      "puesto": "MOL - Molinero",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "471",
+      "nombre": "ISRAEL LIRA CAMPOS",
+      "puesto": "AXE - Auxiliar de Extrusión",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "498",
+      "nombre": "FRANCISCO JAVIER CARO MENDOZA",
+      "puesto": "TMG - Técnico en Mantenimiento General (Construcción)",
+      "creadas": 0,
+      "omitidas": 6,
+      "observaciones": []
+    },
+    {
+      "matricula": "506",
+      "nombre": "MARTÍN CRUZ CAMACHO",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "509",
+      "nombre": "BERNARDO ORDÓÑEZ VERA",
+      "puesto": "AXE - Auxiliar de Extrusión",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "515",
+      "nombre": "MIGUEL ÁNGEL VILLEGAS AJAL",
+      "puesto": "AXE - Auxiliar de Extrusión",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "534",
+      "nombre": "ISHWARI MONTER HERNÁNDEZ",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "535",
+      "nombre": "KARINA GAYOSSO SUÁREZ",
+      "puesto": "SPE - Planificador de la Producción y Supervisor de Almacén de Producto Terminado y Entregas",
+      "creadas": 0,
+      "omitidas": 12,
+      "observaciones": []
+    },
+    {
+      "matricula": "537",
+      "nombre": "JOSÉ ALBERTO RUIZ ISLAS",
+      "puesto": "AXE - Auxiliar de Extrusión",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "54",
+      "nombre": "JOEL GONZÁLEZ SAGASTUME",
+      "puesto": "REN - Responsable de Enrollado",
+      "creadas": 0,
+      "omitidas": 19,
+      "observaciones": []
+    },
+    {
+      "matricula": "541",
+      "nombre": "VALERIA GARCÍA BRIONES",
+      "puesto": "ASG - Administrador del SGC y Mejora Continua",
+      "creadas": 0,
+      "omitidas": 10,
+      "observaciones": []
+    },
+    {
+      "matricula": "544",
+      "nombre": "ROBERTO CARLOS ALVAREZ CORTÉS",
+      "puesto": "AMA - Almacenista de Materiales Auxiliares",
+      "creadas": 0,
+      "omitidas": 10,
+      "observaciones": []
+    },
+    {
+      "matricula": "552",
+      "nombre": "DANIEL CAYETANO ESPITIA",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "57",
+      "nombre": "SAÚL REYES LIRA",
+      "puesto": "GMA - Gerente de Mantenimiento",
+      "creadas": 0,
+      "omitidas": 12,
+      "observaciones": []
+    },
+    {
+      "matricula": "600",
+      "nombre": "PABLO HERNÁNDEZ HERNÁNDEZ",
+      "puesto": "MOL - Molinero",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "607",
+      "nombre": "JORGE JAZIEL CHAVEZ MERCADO",
+      "puesto": "AXE - Auxiliar de Extrusión",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "611",
+      "nombre": "ANUAR DE JESÚS ROMERO GARCÍA",
+      "puesto": "APT - Almacenista de Producto Terminado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "626",
+      "nombre": "ÓSCAR SANDOVAL MALDONADO",
+      "puesto": "AXE - Auxiliar de Extrusión",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "647",
+      "nombre": "PEDRO ENRIQUE MORENO RUIZ",
+      "puesto": "TME - Técnico en Mantenimiento Eléctrico",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "650",
+      "nombre": "JUAN DANIEL MENDOZA GARCÍA",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "657",
+      "nombre": "BRYAM ALBERTO MANZUR MIMILA",
+      "puesto": "STU - Supervisor de Turno",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "658",
+      "nombre": "IVETH ANAHÍ BALTAZAR LÓPEZ",
+      "puesto": "ANN - Analista de Nómina",
+      "creadas": 0,
+      "omitidas": 8,
+      "observaciones": []
+    },
+    {
+      "matricula": "660",
+      "nombre": "GRACIELA ÁNGELES TOLENTINO",
+      "puesto": "PLI - Personal de Limpieza",
+      "creadas": 0,
+      "omitidas": 10,
+      "observaciones": []
+    },
+    {
+      "matricula": "661",
+      "nombre": "ALEXXA MUÑOZ ORTEGA",
+      "puesto": "APE - Auxiliar de Pelletizado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "684",
+      "nombre": "ESTANISLAO LAZCANO CASTELÁN",
+      "puesto": "MOL - Molinero",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "700",
+      "nombre": "VALENTÍN OCAMPO VELÁZQUEZ",
+      "puesto": "MOL - Molinero",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "735",
+      "nombre": "BRENDA GONZAGA HERNÁNDEZ",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "736",
+      "nombre": "JESÚS ADOLFO OCAMPO GARCÍA",
+      "puesto": "SMT - Supervisor de Mantenimiento",
+      "creadas": 0,
+      "omitidas": 12,
+      "observaciones": []
+    },
+    {
+      "matricula": "743",
+      "nombre": "ALEXIS ROJAS MUÑOZ",
+      "puesto": "APE - Auxiliar de Pelletizado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "752",
+      "nombre": "MANUEL ÁNGEL BECERRA CASTELÁN",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "76",
+      "nombre": "EDER FRANCISCO AGUILAR MONROY",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "760",
+      "nombre": "ESDRAS JAIMES RODRÍGUEZ",
+      "puesto": "AMA - Almacenista de Materiales Auxiliares",
+      "creadas": 0,
+      "omitidas": 10,
+      "observaciones": []
+    },
+    {
+      "matricula": "767",
+      "nombre": "CÉSAR EDUARDO ESPINOSA BENGOA",
+      "puesto": "REN - Responsable de Enrollado",
+      "creadas": 0,
+      "omitidas": 19,
+      "observaciones": []
+    },
+    {
+      "matricula": "772",
+      "nombre": "CRISTOFER JONATHAN ORTIZ ENCISO",
+      "puesto": "APT - Almacenista de Producto Terminado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "775",
+      "nombre": "JOSUÉ NICASIO FLORES JIMÉNEZ",
+      "puesto": "TGA - Técnico en Mantenimiento General A",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "788",
+      "nombre": "BRENDA SELENE ISLAS BONILLA",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "790",
+      "nombre": "ALICIA ROMERO ARREOLA",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "800",
+      "nombre": "MARCOS MADRID FERNÁNDEZ",
+      "puesto": "AMP - Almacenista de Materia Prima",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "801",
+      "nombre": "ERICK DANIEL ISLAS RIVERA",
+      "puesto": "TMM - Técnico en Mantenimiento Mecánico",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "810",
+      "nombre": "OMAR GARCÍA CALDERÓN",
+      "puesto": "TME - Técnico en Mantenimiento Eléctrico",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "833",
+      "nombre": "JONATHAN ARNOLD BRIONES GONZÁLEZ",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "843",
+      "nombre": "JULIO CÉSAR MONTES CHÁVEZ",
+      "puesto": "CMP - Comprador y Supervisor de Almacén de Materia Prima y Reproceso de Materiales",
+      "creadas": 0,
+      "omitidas": 12,
+      "observaciones": []
+    },
+    {
+      "matricula": "846",
+      "nombre": "DAVID MARÍN MUÑOZ",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "853",
+      "nombre": "ALFREDO MARTÍNEZ GARCÍA",
+      "puesto": "CHA - Chófer A",
+      "creadas": 0,
+      "omitidas": 26,
+      "observaciones": []
+    },
+    {
+      "matricula": "875",
+      "nombre": "GUSTAVO ADOLFO CASTELÁN SÁNCHEZ",
+      "puesto": "AMP - Almacenista de Materia Prima",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "88",
+      "nombre": "PEDRO GONZÁLEZ HERNÁNDEZ",
+      "puesto": "RPE - Responsable de Almacén de Producto Terminado y Empaque",
+      "creadas": 0,
+      "omitidas": 8,
+      "observaciones": []
+    },
+    {
+      "matricula": "890",
+      "nombre": "JOSÉ EFRAÍN DIEGO ISLAS",
+      "puesto": "AXE - Auxiliar de Extrusión",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "906",
+      "nombre": "DANIEL PÉREZ GUZMÁN",
+      "puesto": "AMA - Almacenista de Materiales Auxiliares",
+      "creadas": 0,
+      "omitidas": 10,
+      "observaciones": []
+    },
+    {
+      "matricula": "909",
+      "nombre": "ROSA AIDE CASTRO LÓPEZ",
+      "puesto": "APE - Auxiliar de Pelletizado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "91",
+      "nombre": "ANDRÉS GARCÍA GONZÁLEZ",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "920",
+      "nombre": "ÓSCAR BRANDON GUTIÉRREZ DEL HOYO",
+      "puesto": "TMH - Técnico en Mantenimiento de Herramentales",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "927",
+      "nombre": "EDUARDO TORRES PACHECO",
+      "puesto": "AXE - Auxiliar de Extrusión",
+      "creadas": 0,
+      "omitidas": 14,
+      "observaciones": []
+    },
+    {
+      "matricula": "93",
+      "nombre": "MARTÍN ARANDA HERNÁNDEZ",
+      "puesto": "OEX - Operador de Extrusión",
+      "creadas": 0,
+      "omitidas": 16,
+      "observaciones": []
+    },
+    {
+      "matricula": "934",
+      "nombre": "JOSUÉ CARBAJAL ORTIZ",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "938",
+      "nombre": "RAÚL HONORIO HERNÁNDEZ GARRIDO",
+      "puesto": "APT - Almacenista de Producto Terminado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "939",
+      "nombre": "JAQUELINE SOTO GARCÍA",
+      "puesto": "APE - Auxiliar de Pelletizado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "942",
+      "nombre": "JOSUÉ VARGAS TREJO",
+      "puesto": "CHC - Chófer C",
+      "creadas": 0,
+      "omitidas": 2,
+      "observaciones": []
+    },
+    {
+      "matricula": "951",
+      "nombre": "PABLO ROBERTO ABAD AGUILAR",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "970",
+      "nombre": "SERGIO ALBERTO ROMERO LOZADA",
+      "puesto": "AAT - Auxiliar de Almacén de Producto Terminado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "977",
+      "nombre": "SERGIO ALEJANDRO GARRIDO LIRA",
+      "puesto": "AAT - Auxiliar de Almacén de Producto Terminado",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "98",
+      "nombre": "MARIO HERNÁNDEZ JIMÉNEZ",
+      "puesto": "TMG - Técnico en Mantenimiento General (Construcción)",
+      "creadas": 0,
+      "omitidas": 6,
+      "observaciones": []
+    },
+    {
+      "matricula": "983",
+      "nombre": "JOSÉ LUIS RAÚL OLVERA MONTIEL",
+      "puesto": "ENR - Enrollador",
+      "creadas": 0,
+      "omitidas": 7,
+      "observaciones": []
+    },
+    {
+      "matricula": "991",
+      "nombre": "ARMANDO RODRÍGUEZ MARTÍNEZ",
+      "puesto": "CHB - Chófer B",
+      "creadas": 0,
+      "omitidas": 31,
+      "observaciones": []
+    }
+  ],
+  "ruta_diagnostico": ""
+}

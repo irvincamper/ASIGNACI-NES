@@ -1,20 +1,21 @@
 from __future__ import annotations
 
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QFrame, QGridLayout, QHBoxLayout, QLabel, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QFrame, QGridLayout, QHBoxLayout, QLabel, QScrollArea, QVBoxLayout, QWidget
 
-from app.styles import apply_shadow, rgba
+from app.styles import APP_TITLE_STYLE, MODULE_TITLE_STYLE, SECTION_TITLE_STYLE, SUBTITLE_STYLE, apply_shadow, rgba
 from app.theme import COLOR_BORDER, COLOR_CARD, COLOR_TEXT, COLOR_TEXT_MUTED, CONTENT_PADDING_X, CONTENT_PADDING_Y
-from utils.mock_data import DASHBOARD_ALERTS, DASHBOARD_KPIS
+from services.dashboard_service import DashboardService
 from utils.formatters import icon_from_name
 from widgets.app_button import AppButton
-from widgets.confirm_dialog import ConfirmDialog
 from widgets.kpi_card import KpiCard
 
 
 class DashboardView(QWidget):
     def __init__(self) -> None:
         super().__init__()
+        self.service = DashboardService()
+
         layout = QVBoxLayout(self)
         layout.setContentsMargins(CONTENT_PADDING_X, CONTENT_PADDING_Y, CONTENT_PADDING_X, CONTENT_PADDING_Y)
         layout.setSpacing(22)
@@ -25,10 +26,13 @@ class DashboardView(QWidget):
 
         app_title = QLabel("Sistema de Asignaciones")
         app_title.setObjectName("AppTitle")
+        app_title.setStyleSheet(APP_TITLE_STYLE)
         module_title = QLabel("Panel General")
         module_title.setObjectName("ModuleTitle")
+        module_title.setStyleSheet(MODULE_TITLE_STYLE)
         subtitle = QLabel("Resumen operativo del sistema")
         subtitle.setObjectName("Subtitle")
+        subtitle.setStyleSheet(SUBTITLE_STYLE)
 
         title_block.addWidget(app_title)
         title_block.addSpacing(10)
@@ -36,22 +40,20 @@ class DashboardView(QWidget):
         title_block.addWidget(subtitle)
 
         refresh = AppButton("Actualizar", "fa5s.sync-alt", "primary")
-        refresh.clicked.connect(lambda: ConfirmDialog.show_mock(self))
+        refresh.clicked.connect(self.refresh_data)
 
         header.addLayout(title_block, 1)
         header.addWidget(refresh, 0, Qt.AlignTop)
         layout.addLayout(header)
 
-        kpi_grid = QGridLayout()
-        kpi_grid.setHorizontalSpacing(22)
-        kpi_grid.setVerticalSpacing(18)
-        for index, item in enumerate(DASHBOARD_KPIS):
-            card = KpiCard(item["icon"], item["value"], item["title"], item["color"])
-            kpi_grid.addWidget(card, index // 3, index % 3)
-        layout.addLayout(kpi_grid)
+        self.kpi_grid = QGridLayout()
+        self.kpi_grid.setHorizontalSpacing(22)
+        self.kpi_grid.setVerticalSpacing(18)
+        layout.addLayout(self.kpi_grid)
 
         alerts = QFrame()
         alerts.setObjectName("Card")
+        alerts.setMinimumHeight(330)
         apply_shadow(alerts)
         alerts_layout = QVBoxLayout(alerts)
         alerts_layout.setContentsMargins(24, 22, 24, 24)
@@ -59,34 +61,69 @@ class DashboardView(QWidget):
 
         section = QLabel("Alertas operativas")
         section.setObjectName("SectionTitle")
+        section.setStyleSheet(SECTION_TITLE_STYLE + "; border: none;")
         alerts_layout.addWidget(section)
 
-        for alert in DASHBOARD_ALERTS:
-            alerts_layout.addWidget(self._alert_row(alert))
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setFrameShape(QFrame.NoFrame)
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        scroll.setStyleSheet("QScrollArea { border: none; background: transparent; }")
+
+        rows_container = QWidget()
+        rows_container.setStyleSheet("background: transparent;")
+        self.alerts_layout = QVBoxLayout(rows_container)
+        self.alerts_layout.setContentsMargins(0, 0, 0, 0)
+        self.alerts_layout.setSpacing(10)
+        scroll.setWidget(rows_container)
+        alerts_layout.addWidget(scroll, 1)
 
         layout.addWidget(alerts)
         layout.addStretch(1)
+        self.refresh_data()
+
+    def refresh_data(self) -> None:
+        self._clear_grid(self.kpi_grid)
+        for index, item in enumerate(self.service.get_kpis()):
+            card = KpiCard(item["icon"], item["value"], item["title"], item["color"])
+            self.kpi_grid.addWidget(card, index // 3, index % 3)
+
+        while self.alerts_layout.count():
+            item = self.alerts_layout.takeAt(0)
+            if item.widget():
+                item.widget().deleteLater()
+        for alert in self.service.get_alerts():
+            self.alerts_layout.addWidget(self._alert_row(alert))
+        self.alerts_layout.addStretch(1)
+
+    def _clear_grid(self, layout: QGridLayout) -> None:
+        while layout.count():
+            item = layout.takeAt(0)
+            if item.widget():
+                item.widget().deleteLater()
 
     def _alert_row(self, alert: dict) -> QFrame:
         row = QFrame()
+        row.setFixedHeight(48)
         row.setStyleSheet(
             f"""
-            QFrame {{
+            QFrame#AlertRow {{
                 background: {COLOR_CARD};
                 border: 1px solid {COLOR_BORDER};
                 border-radius: 8px;
             }}
             """
         )
+        row.setObjectName("AlertRow")
         row_layout = QHBoxLayout(row)
-        row_layout.setContentsMargins(14, 10, 18, 10)
+        row_layout.setContentsMargins(14, 5, 18, 5)
         row_layout.setSpacing(18)
 
         icon = QLabel()
-        icon.setFixedSize(40, 40)
+        icon.setFixedSize(34, 34)
         icon.setAlignment(Qt.AlignCenter)
-        icon.setPixmap(icon_from_name(alert["icon"], alert["color"]).pixmap(20, 20))
-        icon.setStyleSheet(f"QLabel {{ background: {rgba(alert['color'], 0.12)}; border-radius: 20px; }}")
+        icon.setPixmap(icon_from_name(alert["icon"], alert["color"]).pixmap(17, 17))
+        icon.setStyleSheet(f"QLabel {{ background: {rgba(alert['color'], 0.12)}; border: none; border-radius: 17px; }}")
 
         text = QLabel(alert["text"])
         text.setStyleSheet(f"color: {COLOR_TEXT_MUTED}; font-size: 14px; border: none;")

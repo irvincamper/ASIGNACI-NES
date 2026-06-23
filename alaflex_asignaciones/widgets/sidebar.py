@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from PySide6.QtCore import QSize, Qt, Signal
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import QFrame, QLabel, QPushButton, QVBoxLayout
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget
 
 from app.styles import sidebar_button_stylesheet, sidebar_stylesheet
 from app.theme import SIDEBAR_WIDTH
@@ -24,24 +24,35 @@ class Sidebar(QFrame):
         layout.setContentsMargins(14, 36, 14, 0)
         layout.setSpacing(12)
 
+        logo_block = QWidget()
+        logo_block.setFixedHeight(96)
+        logo_layout = QHBoxLayout(logo_block)
+        logo_layout.setContentsMargins(22, 0, 12, 0)
+        logo_layout.setSpacing(12)
+
         logo = QLabel()
         logo.setAlignment(Qt.AlignCenter)
-        logo.setFixedHeight(96)
+        logo.setFixedSize(58, 58)
         pixmap = QPixmap(str(LOGO_PATH))
         if pixmap.isNull():
-            logo.setText("ALAFLEX")
+            logo.setText("A")
             logo.setStyleSheet("color: #FFFFFF; font-size: 30px; font-weight: 900;")
         else:
-            logo.setPixmap(pixmap.scaled(210, 86, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+            logo.setPixmap(pixmap.scaled(58, 58, Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
-        layout.addWidget(logo)
+        text = QLabel("ALAFLEX")
+        text.setStyleSheet("color: #FFFFFF; font-size: 28px; font-weight: 900; letter-spacing: 0px;")
+        logo_layout.addWidget(logo)
+        logo_layout.addWidget(text, 1)
+
+        layout.addWidget(logo_block)
         layout.addSpacing(18)
 
         for module in MODULES:
             button = QPushButton(module["title"])
             button.setCursor(Qt.PointingHandCursor)
             button.setIcon(icon_from_name(module["icon"], "#FFFFFF"))
-            button.setIconSize(QSize(22, 22))
+            button.setIconSize(QSize(18, 18))
             button.clicked.connect(lambda _checked=False, key=module["key"]: self.module_selected.emit(key))
             self.buttons[module["key"]] = button
             layout.addWidget(button)
@@ -53,6 +64,6 @@ class Sidebar(QFrame):
         for key, button in self.buttons.items():
             is_active = key == module_key
             button.setStyleSheet(sidebar_button_stylesheet(is_active))
-            icon_color = "#FFFFFF" if is_active else "rgba(255, 255, 255, 0.86)"
+            icon_color = "#FFFFFF" if is_active else "#DCE6F8"
             module = next(item for item in MODULES if item["key"] == key)
             button.setIcon(icon_from_name(module["icon"], icon_color))

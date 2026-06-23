@@ -34,4 +34,6 @@ class Router(QObject):
         if view is None:
             return
         self.stack.setCurrentWidget(view)
+        if hasattr(view, "refresh_data"):
+            view.refresh_data()
         self.view_changed.emit(module_key)

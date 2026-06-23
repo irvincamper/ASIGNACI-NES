@@ -8,8 +8,10 @@ LOGO_PATH = ASSETS_DIR / "logo_alaflex.png"
 DATA_DIR = PROJECT_ROOT / "data"
 EXPEDIENTES_DIR = DATA_DIR / "expedientes"
 BACKUPS_DIR = DATA_DIR / "backups"
+IMPORTAR_DIR = PROJECT_ROOT / "IMPORTAR"
+IMPORT_DIAGNOSTICS_DIR = DATA_DIR / "import_diagnostics"
+ASIGNACIONES_DIAGNOSTICS_DIR = DATA_DIR / "asignaciones_diagnostics"
 
-# Prepared for Etapa 2. Etapa 1 must not create or connect to this file.
 FUTURE_DATABASE_PATH = DATA_DIR / "seguridad_salud.db"
 
 MODULES = [
@@ -21,4 +23,7 @@ MODULES = [
     {"key": "pdf", "title": "Vista previa PDF", "icon": "fa5s.file-pdf"},
 ]
 
-MOCK_ACTION_MESSAGE = "Funcionalidad preparada para Etapa 2."
+MOCK_ACTION_MESSAGE = (
+    "La lectura real desde SQLite y la importación inicial desde IMPORTAR ya están activas. "
+    "Esta acción manual queda pendiente para la siguiente etapa."
+)

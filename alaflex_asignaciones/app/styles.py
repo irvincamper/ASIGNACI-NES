@@ -151,6 +151,8 @@ QScrollBar::sub-line:vertical {{
 
 
 def apply_shadow(widget: QWidget, blur: int = 22, y_offset: int = 5, alpha: int = 28) -> None:
+    if widget.objectName() == "Card" and not widget.styleSheet():
+        widget.setStyleSheet(card_stylesheet())
     shadow = QGraphicsDropShadowEffect(widget)
     shadow.setBlurRadius(blur)
     shadow.setOffset(0, y_offset)
@@ -206,9 +208,9 @@ def sidebar_button_stylesheet(active: bool) -> str:
             color: #FFFFFF;
             border: none;
             border-radius: 10px;
-            padding: 0 20px;
+            padding: 0 10px;
             text-align: left;
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 700;
             min-height: 70px;
         }}
@@ -222,9 +224,9 @@ def sidebar_button_stylesheet(active: bool) -> str:
         color: rgba(255, 255, 255, 0.86);
         border: none;
         border-radius: 10px;
-        padding: 0 20px;
+        padding: 0 10px;
         text-align: left;
-        font-size: 15px;
+        font-size: 13px;
         font-weight: 600;
         min-height: 64px;
     }}
@@ -249,3 +251,9 @@ def sidebar_stylesheet() -> str:
 
 def table_card_height(row_count: int) -> int:
     return 54 + max(row_count, 1) * TABLE_ROW_HEIGHT + 18
+
+
+APP_TITLE_STYLE = f"color: {COLOR_TEXT}; font-size: 32px; font-weight: 800;"
+MODULE_TITLE_STYLE = f"color: {COLOR_TEXT}; font-size: 25px; font-weight: 800;"
+SUBTITLE_STYLE = f"color: {COLOR_TEXT_MUTED}; font-size: 15px;"
+SECTION_TITLE_STYLE = f"color: {COLOR_TEXT}; font-size: 18px; font-weight: 800;"

@@ -1,0 +1,92 @@
+ALAFLEX - Diagnóstico de importación inicial
+Fecha: 2026-06-23 10:34:10
+
+[Archivos detectados]
+- ASIGNACIONES POR PUESTO 2026.xlsx
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx
+- FORMATO ENTREGA-RECEPCIÓN.xlsx
+- PERSONAL ACTIVO 2026.xlsx
+- PERSONAL DE LA SEMANA 25.xlsx
+
+[Archivos faltantes]
+- Ninguno
+
+[Archivos extra ignorados]
+- Ninguno
+
+[Hojas detectadas]
+- PERSONAL DE LA SEMANA 25.xlsx -> Hoja1
+- PERSONAL ACTIVO 2026.xlsx -> Activo26
+- ASIGNACIONES POR PUESTO 2026.xlsx -> Asignaciones
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx -> Control26_Loc_Est
+
+[Hojas faltantes]
+- Ninguno
+
+[Columnas detectadas]
+- PERSONAL DE LA SEMANA 25.xlsx -> Hoja1: matricula, nombre, turno, puesto, 1 turno, 2 turno, 3 turno, m, mo, turno a, turno b, turno c, turno d
+- PERSONAL ACTIVO 2026.xlsx -> Activo26: item, matricula, nombre, clave puesto, puesto
+- ASIGNACIONES POR PUESTO 2026.xlsx -> Asignaciones: no, clave de puesto, puesto, equipo movil y linea telefonica, radio transmisor, equipo de computo cargador, mouse, regulador, telefono, caja de herramientas, desarmador cruz chico, desarmador cruz plano, gato hidraulico, llave 33 mm para birlo, llave de astrias 1 2 9 16, llave mixta 1 1 16, llave mixta 1 1 18, llave mixta 1, llave mixta 1 2, llave mixta 10 mm, llave mixta 12 mm, llave mixta 13 16, llave mixta 15 16, llave mixta 3 4, llave mixta 5 8, llave mixta 7 16, llave mixta 7 8, llave mixta 9 16, llave perica 10, llavero allen 1 5 6 0 mm, martillo bola, navaja fina, navaja gruesa, pinza de chofer, pinza de presion, pinza de punta, reflejantes, casco de seguridad tipo 1 clase e amarillo, casco de seguridad tipo 1 clase e azul, casco de seguridad tipo 1 clase e blanco, casco de seguridad tipo 1 clase e gris, casco de seguridad tipo 1 clase e naranja, casco de seguridad tipo 1 clase e rojo, casco de seguridad tipo 1 clase e verde, suspension de casco, barbiquejo, lentes de seguridad, googles para soldar, careta para soldar, pantalla facial, tapones auditivos, orejeras, cubrebocas, respirador industrial con valvula, mascarilla, cartucho para vapores organicos y gases aciidos, cartucho para polvos y particulas, guantes de latex, guantes de carnaza cortos, guantes de carnaza largos, guantes dielectricos, guantes anti impacto, guantes anticorte, guantes para manejo de sustancias quimicas, chaleco de seguridad, peto para soldar, zapato de seguridad dielectrico, rodilleras, polainas, arnes, linea de vida, pantalon, camisola, playera, playera tipo polo, camisa, chaleco, lapicero tinta azul, libreta profesional, perforadora 2 orificios, perforadora 3 orificios, engrapadora, tijeras, portapapeles, calculadora, tabla de apoyo, regla, credencial, cuchara, locker, estacionamiento, lampara de mano compartida, kit de limpieza de impresora, llaves
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx -> Control26_Loc_Est: matricula, nombre, locker, ubicacion, estatus, matricula, nombre, cajon, ubicacion, estatus
+
+[Resumen]
+- duplicados ignorados: 38
+- empleados unchanged: 162
+- estacionamientos unchanged: 20
+- filas empleados válidas: 162
+- filas estacionamientos válidas: 20
+- filas lockers válidas: 186
+- filas puestos válidas: 48
+- lockers unchanged: 186
+- objetos sin stock detectado: 91
+- objetos unchanged: 91
+- plantillas_pdf_detectadas: 1
+- puestos unchanged: 210
+- relaciones unchanged: 494
+- turnos leídos: 162
+Plantilla FORMATO ENTREGA-RECEPCIÓN.xlsx detectada: Sí
+
+[Advertencias]
+- FORMATO ENTREGA-RECEPCIÓN.xlsx fue detectado solo como plantilla futura del módulo 6.
+- ASIGNACIONES POR PUESTO 2026.xlsx: no contiene stock/devolución por objeto; se usó stock 0 y devolución por defecto según categoría.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 14: cajón duplicado ignorado: 11.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 15: cajón duplicado ignorado: 11.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 17: cajón duplicado ignorado: 12.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 18: cajón duplicado ignorado: 12.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 189: locker duplicado ignorado: 1.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 190: locker duplicado ignorado: 2.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 191: locker duplicado ignorado: 3.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 192: locker duplicado ignorado: 4.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 193: locker duplicado ignorado: 5.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 194: locker duplicado ignorado: 6.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 195: locker duplicado ignorado: 7.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 196: locker duplicado ignorado: 8.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 197: locker duplicado ignorado: 9.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 198: locker duplicado ignorado: 10.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 199: locker duplicado ignorado: 11.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 200: locker duplicado ignorado: 12.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 201: locker duplicado ignorado: 13.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 202: locker duplicado ignorado: 14.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 203: locker duplicado ignorado: 15.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 204: locker duplicado ignorado: 16.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 205: locker duplicado ignorado: 17.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 206: locker duplicado ignorado: 18.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 207: locker duplicado ignorado: 19.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 208: locker duplicado ignorado: 20.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 209: locker duplicado ignorado: 21.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 210: locker duplicado ignorado: 22.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 211: locker duplicado ignorado: 23.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 212: locker duplicado ignorado: 24.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 213: locker duplicado ignorado: 25.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 214: locker duplicado ignorado: 26.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 215: locker duplicado ignorado: 27.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 216: locker duplicado ignorado: 28.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 217: locker duplicado ignorado: 29.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 218: locker duplicado ignorado: 30.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 219: locker duplicado ignorado: 31.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 220: locker duplicado ignorado: 32.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 221: locker duplicado ignorado: 33.
+- CONTROL DE LOCKERS-ESTACIONAMIENTO.xlsx fila 222: locker duplicado ignorado: 34.
+
+[Errores no bloqueantes]
+- Ninguno
