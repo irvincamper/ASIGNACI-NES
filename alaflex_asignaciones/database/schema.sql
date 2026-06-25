@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS objetos (
     stock_disponible INTEGER NOT NULL DEFAULT 0 CHECK (stock_disponible >= 0),
     requiere_devolucion INTEGER NOT NULL CHECK (requiere_devolucion IN (0, 1)),
     activo INTEGER NOT NULL DEFAULT 1 CHECK (activo IN (0, 1)),
+    observaciones TEXT,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CHECK (stock_disponible <= stock_total)
@@ -138,6 +139,8 @@ CREATE TABLE IF NOT EXISTS expedientes_digitales (
     total_recursos INTEGER NOT NULL DEFAULT 0,
     paginas INTEGER NOT NULL DEFAULT 0,
     revision TEXT,
+    estado TEXT NOT NULL DEFAULT 'Generado',
+    json_snapshot TEXT,
     json_congelado TEXT,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_empleado) REFERENCES empleados(id)
@@ -158,6 +161,11 @@ CREATE TABLE IF NOT EXISTS movimientos (
     tipo TEXT NOT NULL,
     descripcion TEXT NOT NULL,
     id_empleado INTEGER,
+    id_objeto INTEGER,
+    id_asignacion INTEGER,
+    estado_anterior TEXT,
+    estado_nuevo TEXT,
+    observacion TEXT,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_empleado) REFERENCES empleados(id)
 );

@@ -24,8 +24,9 @@ class ObjetosRepository:
                     id,
                     nombre,
                     categoria,
-                    CASE requiere_devolucion WHEN 1 THEN 'Si' ELSE 'No' END AS requiere,
-                    CASE activo WHEN 1 THEN 'Activo' ELSE 'Inactivo' END AS estado
+                    CASE requiere_devolucion WHEN 1 THEN 'Sí' ELSE 'No' END AS requiere,
+                    CASE activo WHEN 1 THEN 'Activo' ELSE 'Inactivo' END AS estado,
+                    COALESCE(observaciones, '') AS observaciones
                 FROM objetos
                 {where}
                 ORDER BY nombre
@@ -38,6 +39,16 @@ class ObjetosRepository:
         with get_connection() as connection:
             rows = connection.execute("SELECT DISTINCT categoria FROM objetos ORDER BY categoria").fetchall()
         return [row["categoria"] for row in rows]
+
+    def find_by_name(self, nombre: str, exclude_id: int | None = None) -> dict | None:
+        params: list = [nombre.strip().upper()]
+        clause = "UPPER(TRIM(nombre)) = ?"
+        if exclude_id is not None:
+            clause += " AND id != ?"
+            params.append(exclude_id)
+        with get_connection() as connection:
+            row = connection.execute(f"SELECT id, nombre FROM objetos WHERE {clause} LIMIT 1", params).fetchone()
+        return dict(row) if row else None
 
     def kpis(self) -> dict[str, int]:
         with get_connection() as connection:
@@ -55,3 +66,50 @@ class ObjetosRepository:
             "con_devolucion": int(row["con_devolucion"] or 0),
             "activos": int(row["activos"] or 0),
         }
+
+    def create(self, nombre: str, categoria: str, requiere_devolucion: int, activo: int, observaciones: str = "") -> int:
+        with get_connection() as connection:
+            cursor = connection.execute(
+                """
+                INSERT INTO objetos (nombre, categoria, requiere_devolucion, activo, observaciones)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (nombre, categoria, requiere_devolucion, activo, observaciones),
+            )
+            return int(cursor.lastrowid)
+
+    def update(
+        self,
+        objeto_id: int,
+        nombre: str,
+        categoria: str,
+        requiere_devolucion: int,
+        activo: int,
+        observaciones: str = "",
+    ) -> None:
+        with get_connection() as connection:
+            connection.execute(
+                """
+                UPDATE objetos
+                SET nombre = ?,
+                    categoria = ?,
+                    requiere_devolucion = ?,
+                    activo = ?,
+                    observaciones = ?,
+                    updated_at = CURRENT_TIMESTAMP
+                WHERE id = ?
+                """,
+                (nombre, categoria, requiere_devolucion, activo, observaciones, objeto_id),
+            )
+
+    def deactivate(self, objeto_id: int) -> None:
+        with get_connection() as connection:
+            connection.execute(
+                """
+                UPDATE objetos
+                SET activo = 0,
+                    updated_at = CURRENT_TIMESTAMP
+                WHERE id = ?
+                """,
+                (objeto_id,),
+            )

@@ -109,14 +109,10 @@ class ImportacionRepository:
         self,
         nombre: str,
         categoria: str,
-        stock_total: int = 0,
-        stock_disponible: int = 0,
         requiere_devolucion: int = 1,
     ) -> tuple[int, str]:
         nombre = clean_text(nombre)
         categoria = clean_text(categoria) or "Otro"
-        stock_total = max(int(stock_total or 0), 0)
-        stock_disponible = max(min(int(stock_disponible or 0), stock_total), 0)
         requiere_devolucion = 1 if requiere_devolucion else 0
         key = make_lookup_key(nombre)
         existing = self.objetos.get(key)
@@ -128,11 +124,6 @@ class ImportacionRepository:
                 updates.append("categoria = ?")
                 params.append(categoria)
                 existing["categoria"] = categoria
-            if int(existing.get("stock_total") or 0) == 0 and stock_total > 0:
-                updates.extend(["stock_total = ?", "stock_disponible = ?"])
-                params.extend([stock_total, stock_disponible])
-                existing["stock_total"] = stock_total
-                existing["stock_disponible"] = stock_disponible
             if updates:
                 updates.append("updated_at = CURRENT_TIMESTAMP")
                 params.append(existing["id"])
@@ -143,18 +134,16 @@ class ImportacionRepository:
         cursor = self.connection.execute(
             """
             INSERT INTO objetos
-                (nombre, categoria, stock_total, stock_disponible, requiere_devolucion, activo)
-            VALUES (?, ?, ?, ?, ?, 1)
+                (nombre, categoria, requiere_devolucion, activo)
+            VALUES (?, ?, ?, 1)
             """,
-            (nombre, categoria, stock_total, stock_disponible, requiere_devolucion),
+            (nombre, categoria, requiere_devolucion),
         )
         objeto_id = int(cursor.lastrowid)
         self.objetos[key] = {
             "id": objeto_id,
             "nombre": nombre,
             "categoria": categoria,
-            "stock_total": stock_total,
-            "stock_disponible": stock_disponible,
             "requiere_devolucion": requiere_devolucion,
         }
         return objeto_id, "created"

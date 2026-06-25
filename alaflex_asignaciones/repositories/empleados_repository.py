@@ -25,23 +25,20 @@ class EmpleadosRepository:
                     p.nombre AS puesto,
                     e.turno,
                     e.estado,
-                    COALESCE((SELECT SUM(cantidad) FROM asignaciones a WHERE a.id_empleado = e.id AND a.estado = 'Asignado'), 0) AS asignados,
-                    COALESCE((SELECT SUM(cantidad) FROM asignaciones a WHERE a.id_empleado = e.id AND a.estado = 'Pendiente'), 0) AS pendientes,
-                    COALESCE((SELECT SUM(cantidad) FROM asignaciones a WHERE a.id_empleado = e.id AND a.estado = 'Pendiente de devolución'), 0) AS pendientes_de_devolucion,
-                    COALESCE((SELECT COUNT(*) FROM asignaciones a WHERE a.id_empleado = e.id), 0) AS total_asignaciones,
+                    COALESCE((SELECT SUM(cantidad) FROM asignaciones a WHERE a.id_empleado = e.id), 0) AS total_asignaciones,
                     COALESCE((SELECT cajon FROM estacionamientos es WHERE es.id_empleado = e.id LIMIT 1), '-') AS estacionamiento,
                     COALESCE((SELECT numero FROM lockers l WHERE l.id_empleado = e.id LIMIT 1), '-') AS locker
                 FROM empleados e
                 JOIN puestos p ON p.id = e.id_puesto
                 {where}
-                ORDER BY e.matricula
+                ORDER BY CAST(e.matricula AS INTEGER), e.matricula
                 """,
                 params,
             ).fetchall()
         output = []
         for row in rows:
             item = dict(row)
-            item["objetos"] = f"A: {item['asignados']} / P: {item['pendientes']}"
+            item["objetos"] = str(item["total_asignaciones"])
             output.append(item)
         return output
 
@@ -80,16 +77,15 @@ class EmpleadosRepository:
                     e.turno,
                     e.estado,
                     e.fecha_ingreso,
+                    e.fecha_baja,
+                    e.observaciones,
                     COALESCE((SELECT cajon FROM estacionamientos es WHERE es.id_empleado = e.id LIMIT 1), '-') AS estacionamiento,
                     COALESCE((SELECT numero FROM lockers l WHERE l.id_empleado = e.id LIMIT 1), '-') AS locker,
-                    COALESCE((SELECT SUM(cantidad) FROM asignaciones a WHERE a.id_empleado = e.id AND a.estado = 'Asignado'), 0) AS asignados,
-                    COALESCE((SELECT SUM(cantidad) FROM asignaciones a WHERE a.id_empleado = e.id AND a.estado = 'Pendiente'), 0) AS pendientes,
-                    COALESCE((SELECT SUM(cantidad) FROM asignaciones a WHERE a.id_empleado = e.id AND a.estado = 'Pendiente de devolución'), 0) AS pendientes_de_devolucion,
-                    COALESCE((SELECT COUNT(*) FROM asignaciones a WHERE a.id_empleado = e.id), 0) AS total_asignaciones
+                    COALESCE((SELECT SUM(cantidad) FROM asignaciones a WHERE a.id_empleado = e.id), 0) AS total_asignaciones
                 FROM empleados e
                 LEFT JOIN puestos p ON p.id = e.id_puesto
                 {where}
-                ORDER BY e.matricula
+                ORDER BY CAST(e.matricula AS INTEGER), e.matricula
                 """,
                 params,
             ).fetchall()

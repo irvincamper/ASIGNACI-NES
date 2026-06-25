@@ -8,6 +8,9 @@ from utils.constants import IMPORTAR_DIR
 from utils.normalizers import normalize_matricula
 
 
+RECURSOS_POR_PAGINA_FORMATO = 16
+
+
 class PdfPreviewService:
     def __init__(self) -> None:
         self.empleados = EmpleadosService()
@@ -27,10 +30,16 @@ class PdfPreviewService:
                 "mensaje": "El empleado está inactivo. Solo puede generarse preview si el motivo es Baja.",
             }
 
-        json_expediente = self.expediente.construir_json_expediente(matricula, motivo)
-        recursos = self._recursos_para_motivo(empleado.get("asignaciones", []), motivo)
+        try:
+            json_expediente = self.expediente.construir_json_expediente(matricula, motivo)
+        except ValueError as exc:
+            return {"ok": False, "empleado": empleado, "mensaje": str(exc)}
+        recursos = json_expediente.get("recursos", [])
         plantilla = self._template_path()
-        paginas_estimadas = max(1, (len(recursos) + 13) // 14)
+        paginas_estimadas = int(
+            json_expediente.get("paginas")
+            or max(2, (len(recursos) + RECURSOS_POR_PAGINA_FORMATO - 1) // RECURSOS_POR_PAGINA_FORMATO)
+        )
         return {
             "ok": True,
             "empleado": empleado,
@@ -40,7 +49,7 @@ class PdfPreviewService:
             "turno": empleado.get("turno", ""),
             "estado": empleado.get("estado", ""),
             "motivo": motivo,
-            "fecha": date.today().strftime("%d/%m/%Y"),
+            "fecha": json_expediente.get("fecha_documento", date.today().strftime("%d/%m/%Y")),
             "recursos": recursos,
             "total_recursos": len(recursos),
             "paginas_estimadas": paginas_estimadas,
@@ -63,26 +72,12 @@ class PdfPreviewService:
             "fecha": date.today().strftime("%d/%m/%Y"),
             "recursos": [],
             "total_recursos": 0,
-            "paginas_estimadas": 1,
+            "paginas_estimadas": 2,
             "plantilla_detectada": self._template_path() is not None,
             "ruta_plantilla": str(self._template_path() or ""),
             "mensaje": "",
             "json_preliminar": {},
         }
-
-    def _recursos_para_motivo(self, asignaciones: list[dict], motivo: str) -> list[dict]:
-        if motivo == "Baja":
-            filtered = [
-                item
-                for item in asignaciones
-                if item.get("requiere_devolucion") == "Sí" and item.get("estado") in {"Asignado", "Pendiente de devolución"}
-            ]
-            return filtered or asignaciones
-        return [
-            item
-            for item in asignaciones
-            if item.get("estado") in {"Pendiente", "Asignado", "Pendiente de devolución"}
-        ]
 
     def _template_path(self):
         matches = list(IMPORTAR_DIR.glob("FORMATO ENTREGA-RECEPCI*.xlsx"))

@@ -21,6 +21,8 @@ class EstacionamientosRepository:
                 SELECT
                     es.cajon,
                     es.estado,
+                    es.observaciones,
+                    COALESCE(es.updated_at, es.created_at, '-') AS fecha,
                     COALESCE(e.matricula, '-') AS matricula,
                     COALESCE(e.nombre, '-') AS empleado,
                     COALESCE(es.tipo_asignacion, '-') AS tipo
@@ -42,3 +44,106 @@ class EstacionamientosRepository:
         with get_connection() as connection:
             row = connection.execute("SELECT COUNT(*) AS total FROM estacionamientos").fetchone()
         return int(row["total"])
+
+    def get_by_cajon(self, cajon: str) -> dict | None:
+        with get_connection() as connection:
+            row = connection.execute(
+                """
+                SELECT es.*, e.matricula, e.nombre AS empleado, e.estado AS empleado_estado
+                FROM estacionamientos es
+                LEFT JOIN empleados e ON e.id = es.id_empleado
+                WHERE es.cajon = ?
+                """,
+                (cajon,),
+            ).fetchone()
+        return dict(row) if row else None
+
+    def get_employee_by_matricula(self, matricula: str) -> dict | None:
+        with get_connection() as connection:
+            row = connection.execute(
+                """
+                SELECT id, matricula, nombre, estado
+                FROM empleados
+                WHERE matricula = ?
+                """,
+                (matricula,),
+            ).fetchone()
+        return dict(row) if row else None
+
+    def get_employee_parking(self, empleado_id: int) -> dict | None:
+        with get_connection() as connection:
+            row = connection.execute(
+                "SELECT * FROM estacionamientos WHERE id_empleado = ? LIMIT 1",
+                (empleado_id,),
+            ).fetchone()
+        return dict(row) if row else None
+
+    def assign(self, cajon: str, empleado_id: int, tipo_asignacion: str, observaciones: str, replace_existing: bool = False) -> None:
+        with get_connection() as connection:
+            current = connection.execute("SELECT cajon FROM estacionamientos WHERE id_empleado = ? LIMIT 1", (empleado_id,)).fetchone()
+            if current and replace_existing:
+                connection.execute(
+                    """
+                    INSERT INTO historial_estacionamientos
+                        (id_empleado, cajon_anterior, cajon_nuevo, fecha_movimiento, tipo_movimiento, observaciones)
+                    VALUES (?, ?, ?, DATE('now', 'localtime'), 'Reasignacion', ?)
+                    """,
+                    (empleado_id, current["cajon"], cajon, observaciones),
+                )
+                connection.execute(
+                    """
+                    UPDATE estacionamientos
+                    SET estado = 'Libre',
+                        id_empleado = NULL,
+                        tipo_asignacion = NULL,
+                        observaciones = NULL,
+                        updated_at = CURRENT_TIMESTAMP
+                    WHERE id_empleado = ?
+                    """,
+                    (empleado_id,),
+                )
+            connection.execute(
+                """
+                UPDATE estacionamientos
+                SET estado = 'Ocupado',
+                    id_empleado = ?,
+                    tipo_asignacion = ?,
+                    observaciones = ?,
+                    updated_at = CURRENT_TIMESTAMP
+                WHERE cajon = ?
+                """,
+                (empleado_id, tipo_asignacion, observaciones, cajon),
+            )
+            connection.execute(
+                """
+                INSERT INTO historial_estacionamientos
+                    (id_empleado, cajon_anterior, cajon_nuevo, fecha_movimiento, tipo_movimiento, observaciones)
+                VALUES (?, ?, ?, DATE('now', 'localtime'), 'Asignacion', ?)
+                """,
+                (empleado_id, current["cajon"] if current else None, cajon, observaciones),
+            )
+
+    def release(self, cajon: str, observaciones: str) -> None:
+        with get_connection() as connection:
+            current = connection.execute("SELECT id_empleado, cajon FROM estacionamientos WHERE cajon = ?", (cajon,)).fetchone()
+            empleado_id = current["id_empleado"] if current else None
+            connection.execute(
+                """
+                INSERT INTO historial_estacionamientos
+                    (id_empleado, cajon_anterior, cajon_nuevo, fecha_movimiento, tipo_movimiento, observaciones)
+                VALUES (?, ?, NULL, DATE('now', 'localtime'), 'Liberacion', ?)
+                """,
+                (empleado_id, cajon, observaciones),
+            )
+            connection.execute(
+                """
+                UPDATE estacionamientos
+                SET estado = 'Libre',
+                    id_empleado = NULL,
+                    tipo_asignacion = NULL,
+                    observaciones = ?,
+                    updated_at = CURRENT_TIMESTAMP
+                WHERE cajon = ?
+                """,
+                (observaciones, cajon),
+            )

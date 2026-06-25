@@ -3,7 +3,7 @@ from __future__ import annotations
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QFrame, QGridLayout, QHBoxLayout, QLabel, QScrollArea, QVBoxLayout, QWidget
 
-from app.styles import APP_TITLE_STYLE, MODULE_TITLE_STYLE, SECTION_TITLE_STYLE, SUBTITLE_STYLE, apply_shadow, rgba
+from app.styles import SECTION_TITLE_STYLE, apply_shadow, rgba
 from app.theme import COLOR_BORDER, COLOR_CARD, COLOR_TEXT, COLOR_TEXT_MUTED, CONTENT_PADDING_X, CONTENT_PADDING_Y
 from services.dashboard_service import DashboardService
 from utils.formatters import icon_from_name
@@ -24,18 +24,13 @@ class DashboardView(QWidget):
         title_block = QVBoxLayout()
         title_block.setSpacing(8)
 
-        app_title = QLabel("Sistema de Asignaciones")
-        app_title.setObjectName("AppTitle")
-        app_title.setStyleSheet(APP_TITLE_STYLE)
         module_title = QLabel("Panel General")
         module_title.setObjectName("ModuleTitle")
-        module_title.setStyleSheet(MODULE_TITLE_STYLE)
+        module_title.setStyleSheet(self._module_title_style())
         subtitle = QLabel("Resumen operativo del sistema")
         subtitle.setObjectName("Subtitle")
-        subtitle.setStyleSheet(SUBTITLE_STYLE)
+        subtitle.setStyleSheet(self._subtitle_style())
 
-        title_block.addWidget(app_title)
-        title_block.addSpacing(10)
         title_block.addWidget(module_title)
         title_block.addWidget(subtitle)
 
@@ -101,6 +96,12 @@ class DashboardView(QWidget):
             item = layout.takeAt(0)
             if item.widget():
                 item.widget().deleteLater()
+
+    def _module_title_style(self) -> str:
+        return f"color: {COLOR_TEXT}; font-size: 42px; font-weight: 900;"
+
+    def _subtitle_style(self) -> str:
+        return f"color: {COLOR_TEXT_MUTED}; font-size: 18px;"
 
     def _alert_row(self, alert: dict) -> QFrame:
         row = QFrame()

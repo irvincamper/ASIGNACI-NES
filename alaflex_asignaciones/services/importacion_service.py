@@ -254,11 +254,6 @@ def _import_asignaciones_por_puesto(
             clave_col = headers.index("clave de puesto") if "clave de puesto" in headers else None
 
             object_columns = _build_object_columns(category_row, header_row, puesto_col, repository, diagnostics, path.name)
-            if object_columns:
-                diagnostics.warn(
-                    f"{path.name}: no contiene stock/devolución por objeto; se usó stock 0 y devolución por defecto según categoría."
-                )
-
             for row_number, row_values in enumerate(rows, start=3):
                 row = list(row_values)
                 puesto = clean_text(_cell(row, puesto_col))
@@ -310,12 +305,9 @@ def _build_object_columns(
         objeto_id, objeto_status = repository.upsert_objeto(
             nombre=object_name,
             categoria=category,
-            stock_total=0,
-            stock_disponible=0,
             requiere_devolucion=requiere_devolucion,
         )
         _count_status(diagnostics, "objetos", objeto_status)
-        diagnostics.inc("objetos sin stock detectado")
         object_columns.append((index, objeto_id, requiere_devolucion))
     if not object_columns:
         diagnostics.warn(f"{file_name}: no se detectaron objetos en la matriz de asignación.")

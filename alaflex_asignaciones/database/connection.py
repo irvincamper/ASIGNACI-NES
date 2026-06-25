@@ -30,6 +30,14 @@ def apply_safe_migrations(connection: sqlite3.Connection) -> None:
         ("puestos", "clave", "ALTER TABLE puestos ADD COLUMN clave TEXT"),
         ("estacionamientos", "ubicacion", "ALTER TABLE estacionamientos ADD COLUMN ubicacion TEXT"),
         ("lockers", "ubicacion", "ALTER TABLE lockers ADD COLUMN ubicacion TEXT"),
+        ("objetos", "observaciones", "ALTER TABLE objetos ADD COLUMN observaciones TEXT"),
+        ("movimientos", "id_objeto", "ALTER TABLE movimientos ADD COLUMN id_objeto INTEGER"),
+        ("movimientos", "id_asignacion", "ALTER TABLE movimientos ADD COLUMN id_asignacion INTEGER"),
+        ("movimientos", "estado_anterior", "ALTER TABLE movimientos ADD COLUMN estado_anterior TEXT"),
+        ("movimientos", "estado_nuevo", "ALTER TABLE movimientos ADD COLUMN estado_nuevo TEXT"),
+        ("movimientos", "observacion", "ALTER TABLE movimientos ADD COLUMN observacion TEXT"),
+        ("expedientes_digitales", "estado", "ALTER TABLE expedientes_digitales ADD COLUMN estado TEXT DEFAULT 'Generado'"),
+        ("expedientes_digitales", "json_snapshot", "ALTER TABLE expedientes_digitales ADD COLUMN json_snapshot TEXT"),
     ]
     for table, column, statement in migrations:
         if not _column_exists(connection, table, column):

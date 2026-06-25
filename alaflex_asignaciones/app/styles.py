@@ -69,8 +69,13 @@ QLabel#SectionTitle {{
     font-weight: 800;
 }}
 
-QLineEdit, QComboBox {{
+QDialog {{
+    background: #F4F6FA;
+}}
+
+QLineEdit, QComboBox, QDateEdit {{
     min-height: 44px;
+    max-height: 48px;
     padding-left: 14px;
     padding-right: 14px;
     background: {COLOR_CARD};
@@ -80,7 +85,16 @@ QLineEdit, QComboBox {{
     color: {COLOR_TEXT};
 }}
 
-QLineEdit:focus, QComboBox:focus {{
+QTextEdit {{
+    padding: 10px 12px;
+    background: {COLOR_CARD};
+    border: 1px solid {COLOR_BORDER};
+    border-radius: 8px;
+    font-size: 14px;
+    color: {COLOR_TEXT};
+}}
+
+QLineEdit:focus, QComboBox:focus, QDateEdit:focus, QTextEdit:focus {{
     border: 1px solid {COLOR_BLUE};
 }}
 
@@ -89,6 +103,11 @@ QLineEdit::placeholder {{
 }}
 
 QComboBox::drop-down {{
+    border: none;
+    width: 28px;
+}}
+
+QDateEdit::drop-down {{
     border: none;
     width: 28px;
 }}

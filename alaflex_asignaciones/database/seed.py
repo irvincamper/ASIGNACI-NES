@@ -46,19 +46,19 @@ def seed_objetos(connection: sqlite3.Connection) -> None:
     if not _table_empty(connection, "objetos"):
         return
     objetos = [
-        ("Casco", "Seguridad", 80, 62, 1),
-        ("Chaleco", "Vestimenta", 70, 55, 1),
-        ("Lentes de seguridad", "Seguridad", 90, 74, 1),
-        ("Guantes", "Seguridad", 120, 96, 1),
-        ("Gafete", "Acceso", 150, 138, 0),
-        ("Uniforme", "Vestimenta", 65, 48, 1),
-        ("Botas", "Seguridad", 75, 51, 1),
-        ("Locker", "Accesorios", 40, 28, 1),
+        ("Casco", "Seguridad", 1),
+        ("Chaleco", "Vestimenta", 1),
+        ("Lentes de seguridad", "Seguridad", 1),
+        ("Guantes", "Seguridad", 1),
+        ("Gafete", "Acceso", 0),
+        ("Uniforme", "Vestimenta", 1),
+        ("Botas", "Seguridad", 1),
+        ("Locker", "Accesorios", 1),
     ]
     connection.executemany(
         """
-        INSERT INTO objetos (nombre, categoria, stock_total, stock_disponible, requiere_devolucion)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO objetos (nombre, categoria, requiere_devolucion)
+        VALUES (?, ?, ?)
         """,
         objetos,
     )

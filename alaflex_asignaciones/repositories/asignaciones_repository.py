@@ -22,7 +22,9 @@ class AsignacionesRepository:
 
     def count_total(self) -> int:
         with get_connection() as connection:
-            row = connection.execute("SELECT COUNT(*) AS total FROM asignaciones").fetchone()
+            row = connection.execute(
+                "SELECT COALESCE(SUM(cantidad), 0) AS total FROM asignaciones WHERE estado != 'No aplica'"
+            ).fetchone()
         return int(row["total"])
 
     def count_empleados_activos_sin_asignaciones(self) -> int:
@@ -32,7 +34,7 @@ class AsignacionesRepository:
                 SELECT COUNT(*) AS total
                 FROM empleados e
                 WHERE e.estado = 'Activo'
-                  AND NOT EXISTS (SELECT 1 FROM asignaciones a WHERE a.id_empleado = e.id)
+                  AND NOT EXISTS (SELECT 1 FROM asignaciones a WHERE a.id_empleado = e.id AND a.estado != 'No aplica')
                 """
             ).fetchone()
         return int(row["total"])
@@ -43,22 +45,132 @@ class AsignacionesRepository:
                 """
                 SELECT
                     a.id AS id_asignacion,
+                    a.id_empleado,
+                    a.id_objeto,
                     o.nombre AS concepto,
                     o.nombre AS objeto,
                     o.categoria,
                     a.cantidad,
                     a.estado,
+                    o.requiere_devolucion AS requiere_devolucion_valor,
                     CASE o.requiere_devolucion WHEN 1 THEN 'Sí' ELSE 'No' END AS requiere_devolucion,
-                    a.fecha_asignacion AS fecha,
+                    CASE
+                        WHEN a.estado = 'Devuelto' THEN a.fecha_devolucion
+                        ELSE a.fecha_asignacion
+                    END AS fecha,
+                    a.fecha_asignacion,
+                    a.fecha_devolucion,
                     a.observaciones
                 FROM asignaciones a
                 JOIN objetos o ON o.id = a.id_objeto
                 WHERE a.id_empleado = ?
+                  AND a.estado != 'No aplica'
                 ORDER BY o.nombre
                 """,
                 (empleado_id,),
             ).fetchall()
         return [dict(row) for row in rows]
+
+    def count_objects_for_employee(self, empleado_id: int) -> int:
+        with get_connection() as connection:
+            row = connection.execute(
+                """
+                SELECT COALESCE(SUM(cantidad), 0) AS total
+                FROM asignaciones
+                WHERE id_empleado = ?
+                  AND estado != 'No aplica'
+                """,
+                (empleado_id,),
+            ).fetchone()
+        return int(row["total"] or 0)
+
+    def get_by_id(self, connection: sqlite3.Connection, id_asignacion: int) -> dict | None:
+        row = connection.execute(
+            """
+            SELECT
+                a.id AS id_asignacion,
+                a.id_empleado,
+                a.id_objeto,
+                a.cantidad,
+                a.estado,
+                a.fecha_asignacion,
+                a.fecha_devolucion,
+                a.observaciones,
+                o.nombre AS objeto,
+                o.categoria,
+                o.requiere_devolucion AS requiere_devolucion_valor,
+                CASE o.requiere_devolucion WHEN 1 THEN 'Sí' ELSE 'No' END AS requiere_devolucion,
+                e.matricula,
+                e.nombre AS empleado
+            FROM asignaciones a
+            JOIN objetos o ON o.id = a.id_objeto
+            JOIN empleados e ON e.id = a.id_empleado
+            WHERE a.id = ?
+            """,
+            (id_asignacion,),
+        ).fetchone()
+        return dict(row) if row else None
+
+    def resumen_por_empleado(self, empleado_id: int) -> dict[str, int]:
+        with get_connection() as connection:
+            rows = connection.execute(
+                """
+                SELECT estado, COALESCE(SUM(cantidad), 0) AS total
+                FROM asignaciones
+                WHERE id_empleado = ?
+                GROUP BY estado
+                """,
+                (empleado_id,),
+            ).fetchall()
+        resumen = {
+            "Asignado": 0,
+            "Pendiente": 0,
+            "Pendiente de devolución": 0,
+            "No aplica": 0,
+            "Devuelto": 0,
+        }
+        for row in rows:
+            if row["estado"] in resumen:
+                resumen[row["estado"]] = int(row["total"] or 0)
+        resumen["Total"] = sum(resumen.values())
+        return resumen
+
+    def update_assignment_state(
+        self,
+        connection: sqlite3.Connection,
+        id_asignacion: int,
+        nuevo_estado: str,
+        observacion: str | None = None,
+    ) -> None:
+        fields = ["estado = ?", "tipo_movimiento = ?", "updated_at = CURRENT_TIMESTAMP"]
+        params: list[object] = [nuevo_estado, f"Asignación marcada como {nuevo_estado.lower()}"]
+        if nuevo_estado == "Asignado":
+            fields.append("fecha_asignacion = COALESCE(fecha_asignacion, DATE('now', 'localtime'))")
+        elif nuevo_estado == "Devuelto":
+            fields.append("fecha_devolucion = DATE('now', 'localtime')")
+        if observacion is not None:
+            fields.append("observaciones = ?")
+            params.append(observacion)
+        params.append(id_asignacion)
+        connection.execute(
+            f"UPDATE asignaciones SET {', '.join(fields)} WHERE id = ?",
+            params,
+        )
+
+    def update_assignment_observation(
+        self,
+        connection: sqlite3.Connection,
+        id_asignacion: int,
+        observacion: str,
+    ) -> None:
+        connection.execute(
+            """
+            UPDATE asignaciones
+            SET observaciones = ?, updated_at = CURRENT_TIMESTAMP
+            WHERE id = ?
+            """,
+            (observacion, id_asignacion),
+        )
 
     def list_active_employees_for_generation(self, connection: sqlite3.Connection) -> list[dict]:
         rows = connection.execute(
@@ -108,7 +220,6 @@ class AsignacionesRepository:
                 r.requiere_devolucion,
                 o.nombre AS objeto,
                 o.activo AS objeto_activo,
-                o.stock_disponible,
                 o.categoria
             FROM reglas_por_puesto r
             JOIN objetos o ON o.id = r.id_objeto
@@ -158,3 +269,56 @@ class AsignacionesRepository:
             (empleado_id, objeto_id, cantidad, observaciones),
         )
         return int(cursor.lastrowid)
+
+    def create_assigned_assignment(
+        self,
+        connection: sqlite3.Connection,
+        empleado_id: int,
+        objeto_id: int,
+        cantidad: int,
+        observaciones: str = "",
+    ) -> int:
+        cursor = connection.execute(
+            """
+            INSERT INTO asignaciones
+                (id_empleado, id_objeto, cantidad, tipo_movimiento, estado, fecha_asignacion, observaciones)
+            VALUES (?, ?, ?, 'Asignacion formal', 'Asignado', DATE('now', 'localtime'), ?)
+            """,
+            (empleado_id, objeto_id, cantidad, observaciones),
+        )
+        return int(cursor.lastrowid)
+
+    def mark_assignments_not_in_objects(
+        self,
+        connection: sqlite3.Connection,
+        empleado_id: int,
+        object_ids: list[int],
+        observaciones: str = "",
+    ) -> int:
+        if object_ids:
+            placeholders = ", ".join("?" for _ in object_ids)
+            cursor = connection.execute(
+                f"""
+                UPDATE asignaciones
+                SET estado = 'No aplica',
+                    observaciones = COALESCE(NULLIF(?, ''), observaciones),
+                    updated_at = CURRENT_TIMESTAMP
+                WHERE id_empleado = ?
+                  AND id_objeto NOT IN ({placeholders})
+                  AND estado != 'No aplica'
+                """,
+                (observaciones, empleado_id, *object_ids),
+            )
+        else:
+            cursor = connection.execute(
+                """
+                UPDATE asignaciones
+                SET estado = 'No aplica',
+                    observaciones = COALESCE(NULLIF(?, ''), observaciones),
+                    updated_at = CURRENT_TIMESTAMP
+                WHERE id_empleado = ?
+                  AND estado != 'No aplica'
+                """,
+                (observaciones, empleado_id),
+            )
+        return int(cursor.rowcount or 0)

@@ -25,14 +25,6 @@ def validate_fecha_ingreso_required(value: str) -> str | None:
     return require_text(value, "Debe ingresar la fecha de ingreso.")
 
 
-def validate_stock(stock_total: int, stock_disponible: int) -> str | None:
-    if stock_total < 0 or stock_disponible < 0:
-        return "El stock no puede ser negativo."
-    if stock_disponible > stock_total:
-        return "El stock disponible no puede ser mayor que el stock total."
-    return None
-
-
 def validate_cantidad(cantidad: int) -> str | None:
     return None if cantidad > 0 else "La cantidad debe ser mayor a cero."
 

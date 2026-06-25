@@ -14,6 +14,9 @@ class RelacionesRepository:
             rows = connection.execute(
                 f"""
                 SELECT
+                    r.id,
+                    r.id_puesto,
+                    r.id_objeto,
                     p.nombre AS puesto,
                     o.nombre AS objeto,
                     r.cantidad,
@@ -29,6 +32,104 @@ class RelacionesRepository:
                 params,
             ).fetchall()
         return [dict(row) for row in rows]
+
+    def list_active_objects(self) -> list[dict]:
+        with get_connection() as connection:
+            rows = connection.execute(
+                """
+                SELECT id, nombre, requiere_devolucion
+                FROM objetos
+                WHERE activo = 1
+                ORDER BY nombre
+                """
+            ).fetchall()
+        return [dict(row) for row in rows]
+
+    def get_existing(self, puesto_id: int, objeto_id: int) -> dict | None:
+        with get_connection() as connection:
+            row = connection.execute(
+                """
+                SELECT id, activo
+                FROM reglas_por_puesto
+                WHERE id_puesto = ? AND id_objeto = ?
+                """,
+                (puesto_id, objeto_id),
+            ).fetchone()
+        return dict(row) if row else None
+
+    def upsert(self, data: dict, relation_id: int | None = None) -> int:
+        with get_connection() as connection:
+            if relation_id:
+                connection.execute(
+                    """
+                    UPDATE reglas_por_puesto
+                    SET id_objeto = ?,
+                        cantidad = ?,
+                        obligatorio = ?,
+                        requiere_devolucion = ?,
+                        activo = ?,
+                        updated_at = CURRENT_TIMESTAMP
+                    WHERE id = ?
+                    """,
+                    (
+                        data["id_objeto"],
+                        data["cantidad"],
+                        data["obligatorio"],
+                        data["requiere_devolucion"],
+                        data["activo"],
+                        relation_id,
+                    ),
+                )
+                return relation_id
+            existing = self.get_existing(int(data["id_puesto"]), int(data["id_objeto"]))
+            if existing:
+                connection.execute(
+                    """
+                    UPDATE reglas_por_puesto
+                    SET cantidad = ?,
+                        obligatorio = ?,
+                        requiere_devolucion = ?,
+                        activo = ?,
+                        updated_at = CURRENT_TIMESTAMP
+                    WHERE id = ?
+                    """,
+                    (
+                        data["cantidad"],
+                        data["obligatorio"],
+                        data["requiere_devolucion"],
+                        data["activo"],
+                        existing["id"],
+                    ),
+                )
+                return int(existing["id"])
+            cursor = connection.execute(
+                """
+                INSERT INTO reglas_por_puesto
+                    (id_puesto, id_objeto, cantidad, obligatorio, requiere_devolucion, activo)
+                VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    data["id_puesto"],
+                    data["id_objeto"],
+                    data["cantidad"],
+                    data["obligatorio"],
+                    data["requiere_devolucion"],
+                    data["activo"],
+                ),
+            )
+            return int(cursor.lastrowid)
+
+    def deactivate(self, relation_id: int) -> None:
+        with get_connection() as connection:
+            connection.execute(
+                """
+                UPDATE reglas_por_puesto
+                SET activo = 0,
+                    updated_at = CURRENT_TIMESTAMP
+                WHERE id = ?
+                """,
+                (relation_id,),
+            )
 
     def kpis(self) -> dict[str, int]:
         with get_connection() as connection:

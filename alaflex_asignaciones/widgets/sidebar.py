@@ -27,23 +27,20 @@ class Sidebar(QFrame):
         logo_block = QWidget()
         logo_block.setFixedHeight(96)
         logo_layout = QHBoxLayout(logo_block)
-        logo_layout.setContentsMargins(22, 0, 12, 0)
-        logo_layout.setSpacing(12)
+        logo_layout.setContentsMargins(0, 0, 0, 0)
+        logo_layout.setAlignment(Qt.AlignCenter)
 
         logo = QLabel()
         logo.setAlignment(Qt.AlignCenter)
-        logo.setFixedSize(58, 58)
+        logo.setFixedSize(82, 82)
         pixmap = QPixmap(str(LOGO_PATH))
         if pixmap.isNull():
             logo.setText("A")
             logo.setStyleSheet("color: #FFFFFF; font-size: 30px; font-weight: 900;")
         else:
-            logo.setPixmap(pixmap.scaled(58, 58, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+            logo.setPixmap(pixmap.scaled(82, 82, Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
-        text = QLabel("ALAFLEX")
-        text.setStyleSheet("color: #FFFFFF; font-size: 28px; font-weight: 900; letter-spacing: 0px;")
         logo_layout.addWidget(logo)
-        logo_layout.addWidget(text, 1)
 
         layout.addWidget(logo_block)
         layout.addSpacing(18)

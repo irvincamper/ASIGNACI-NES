@@ -1,8 +1,10 @@
 from __future__ import annotations
 
-from PySide6.QtWidgets import QDialog, QLabel, QLineEdit, QVBoxLayout
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QDialog, QFrame, QLabel, QLineEdit, QVBoxLayout
 
-from app.theme import COLOR_CARD, COLOR_TEXT, COLOR_TEXT_MUTED
+from app.styles import apply_shadow
+from app.theme import COLOR_BG, COLOR_BORDER, COLOR_CARD, COLOR_TEXT, COLOR_TEXT_MUTED
 from widgets.app_button import AppButton
 
 
@@ -11,11 +13,12 @@ class FormDialog(QDialog):
         super().__init__(parent)
         self.setWindowTitle(title)
         self.setModal(True)
-        self.setFixedWidth(520)
-        self.setStyleSheet(f"QDialog {{ background: {COLOR_CARD}; }}")
+        self.setWindowFlags(self.windowFlags() | Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint)
+        self.setFixedSize(560, 320)
+        self.setStyleSheet(f"QDialog {{ background: {COLOR_BG}; }}")
 
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(28, 26, 28, 26)
+        layout.setContentsMargins(22, 22, 22, 20)
         layout.setSpacing(14)
 
         title_label = QLabel(title)
@@ -31,7 +34,24 @@ class FormDialog(QDialog):
         button = AppButton("Cerrar", "fa5s.check", "primary")
         button.clicked.connect(self.accept)
 
-        layout.addWidget(title_label)
-        layout.addWidget(note)
-        layout.addWidget(field)
+        card = QFrame()
+        card.setObjectName("Card")
+        card.setStyleSheet(
+            f"""
+            QFrame#Card {{
+                background: {COLOR_CARD};
+                border: 1px solid {COLOR_BORDER};
+                border-radius: 14px;
+            }}
+            """
+        )
+        apply_shadow(card, blur=18, y_offset=4, alpha=20)
+        card_layout = QVBoxLayout(card)
+        card_layout.setContentsMargins(20, 18, 20, 18)
+        card_layout.setSpacing(12)
+        card_layout.addWidget(title_label)
+        card_layout.addWidget(note)
+        card_layout.addWidget(field)
+
+        layout.addWidget(card)
         layout.addWidget(button)

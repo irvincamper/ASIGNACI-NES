@@ -36,6 +36,8 @@ STATUS_STYLES = {
     "Inactivo": (COLOR_TEXT_MUTED, "#F1F3F7"),
     "Pendiente": (COLOR_WARNING, COLOR_WARNING_SOFT),
     "Asignado": (COLOR_BLUE, COLOR_BLUE_SOFT),
+    "No aplica": (COLOR_TEXT_MUTED, "#F1F3F7"),
+    "Pendiente de devolución": (COLOR_WARNING, COLOR_WARNING_SOFT),
     "Devuelto": (COLOR_SUCCESS, COLOR_SUCCESS_SOFT),
     "Libre": (COLOR_SUCCESS, COLOR_SUCCESS_SOFT),
     "Ocupado": (COLOR_PURPLE, COLOR_PURPLE_SOFT),
